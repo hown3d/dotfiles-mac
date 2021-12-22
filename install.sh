@@ -1,6 +1,4 @@
 #!/bin/bash
-echo "Installing lunarvim"
-git clone --depth 1 https://github.com/LunarVim/LunarVim.git $HOME/.config/nvim &
 
 binaries=( 
   go 
@@ -43,42 +41,61 @@ casks=(
   alfred
 )
 
-echo "Fetching binaries"
-for binary in "${binaries[@]}"; do
-  echo "fetching $binary"
-  brew fetch $binary &
-done
+function brew_func {
+  echo "Fetching binaries"
+  for binary in "${binaries[@]}"; do
+    echo "fetching $binary"
+    brew fetch $binary &
+  done
 
-echo "Fetching head binaries"
-for binary in "${head_binaries[@]}"; do
-  echo "fetching $binary"
-  brew fetch $binary &
-done
+  echo "Fetching head binaries"
+  for binary in "${head_binaries[@]}"; do
+    echo "fetching $binary"
+    brew fetch $binary &
+  done
 
 
-echo "Fetching casks"
-for cask in "${casks[@]}"; do
-  echo "fetching $cask"
-  brew fetch --cask $cask &
-done
+  echo "Fetching casks"
+  for cask in "${casks[@]}"; do
+    echo "fetching $cask"
+    brew fetch --cask $cask &
+  done
 
-for job in $(jobs -p); do
-  wait $job
-done
+  for job in $(jobs -p); do
+    wait $job
+  done
 
-echo "Installing Brew Binaries"
-brew install $binaries
+  echo "Installing Brew Binaries"
+  brew install $binaries
 
-echo "Installing casks"
-brew install --cask $casks
+  echo "Installing casks"
+  brew install --cask $casks
 
-echo "Installing head binaries"
-brew install --HEAD $head_binaries
+  echo "Installing head binaries"
+  brew install --HEAD $head_binaries
+}
 
-echo "Installing pip packages"
-pip install pynvim &
+function nvim_func {
+  echo "Installing lunarvim"
+  git clone --depth 1 https://github.com/LunarVim/LunarVim.git $HOME/.config/nvim &
 
-for dir in $(/bin/ls -d */); do
+  echo "Installing pip packages"
+  pip install pynvim &
+}
+
+for dir in */; do
   echo "Stowing $dir"
   stow -t $HOME/.config/$dir $dir
 done
+
+case "$1" in
+  nvim) nvim_func
+  ;;
+brew) brew_func
+  ;;
+all) brew_func nvim_func
+  ;;
+  *) echo "use brew or nvim to install or all to do everything."
+  ;;
+esac
+

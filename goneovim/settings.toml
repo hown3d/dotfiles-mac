@@ -51,7 +51,7 @@ FontSize = 15
 ## You can change the behavior of the GUI by changing the following boolean values.
 ## If you prefer the traditional Vim UI, set it to false for all.
 ## Also, `ExtMessages` is still experimental at this time and we don't recommend setting it to true if you want stability.
-ExtCmdline   = true
+ExtCmdline   = false
 ExtPopupmenu = true
 ExtTabline   = false
 ExtMessages  = false
@@ -104,7 +104,7 @@ DrawShadowForFloatWindow = false
 # DesktopNotifications = false
 
 # Display the effect when clicked
-ClickEffect = true
+ClickEffect = false
 
 # Pattern that fills the diff background
 # Change the background pattern used for diff display.
@@ -185,8 +185,8 @@ SmoothMove = true
 # TerminalModeColor = "#778899"
 
 ## Statusline components
-# Left = [ "mode", "filepath", "filename" ]
-# Right = [ "message", "git", "filetype", "fileformat", "fileencoding", "curpos", "lint" ]
+Left = [ "mode", "filepath", "filename" ]
+Right = [ "message", "git", "filetype", "fileformat", "fileencoding", "curpos", "lint" ]
 
 
 ## Configure externalized tabline UI.
@@ -232,10 +232,10 @@ ShowIcon = false
 ## To view the minimap, launch an additional nvim instance;
 ## setting Disable to true will not launch this additional nvim instance
 ## and will completely disable the minimap feature.
-Disable = false
+Disable = true
 
 ## Specifies whether to show the minimap or not.
-Visible = true
+Visible = false
 
 ## Specifies the width of the minimap.
 Width = 100
