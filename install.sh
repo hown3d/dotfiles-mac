@@ -25,15 +25,11 @@ binaries=(
   gh
 )
 
-head_binaries=( colima )
-
 casks=(
   spotify
   brave-browser
-  goneovim
   discord
   font-jetbrains-mono-nerd-font
-  kitty
   keepassxc
   macfuse
   whatsapp
@@ -75,27 +71,23 @@ function brew_func {
   brew install --HEAD $head_binaries
 }
 
-function nvim_func {
-  echo "Installing lunarvim"
-  git clone --depth 1 https://github.com/LunarVim/LunarVim.git $HOME/.config/nvim &
-
-  echo "Installing pip packages"
-  pip install pynvim &
-}
-
 for dir in */; do
   echo "Stowing $dir"
-  stow -t $HOME/.config/$dir $dir
+  if [[ $dir == "nvim/" ]]; then
+    git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
+    mkdir $HOME/.config/nvim/lua/custom
+    stow -R -t $HOME/.config/nvim/lua/custom/ $dir
+  else 
+    stow -R -t $HOME/.config/$dir $dir
+  fi
 done
 
 case "$1" in
-  nvim) nvim_func
-  ;;
-brew) brew_func
-  ;;
-all) brew_func nvim_func
-  ;;
-  *) echo "use brew or nvim to install or all to do everything."
-  ;;
+  brew) brew_func
+    ;;
+  all) brew_func 
+    ;;
+  *) echo "use brew to install brew binaries or all to do everything."
+    ;;
 esac
 
