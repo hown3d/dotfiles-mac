@@ -18,9 +18,11 @@ local nvimtree = require "custom.plugins.configs.nvimtree"
 
 M.plugins = {
   override = {
-    ["nvim-telescope/telescope.nvim"] = telescope,
-    ["NvChad/nvterm"]                 = nvterm,
-    ["kyazdani42/nvim-tree.lua"]      = nvimtree,
+    ["nvim-telescope/telescope.nvim"]   = telescope,
+    ["NvChad/nvterm"]                   = nvterm,
+    ["kyazdani42/nvim-tree.lua"]        = nvimtree,
+    -- remove lazy loading
+    ["williamboman/nvim-lsp-installer"] = {},
   },
   user = require "custom.plugins",
   options = {

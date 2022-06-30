@@ -11,7 +11,8 @@ require('jaq-nvim').setup{
 			markdown = "glow %",
 			python = "python3 %",
 			rust = "cargo run",
-			cpp = "g++ % -o $fileBase && ./$fileBase",
+			cpp = "clang % -o $fileBase && ./$fileBase",
+			c = "clang % -o $fileBase && ./$fileBase",
 			go = "go run %",
 			sh = "sh %",
 		},
@@ -75,7 +76,7 @@ require('jaq-nvim').setup{
 			position = "bot",
 
 			-- Size of quickfix window
-			size     = 10
+			size     = 15
 		}
 	}
 }
