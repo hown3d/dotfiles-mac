@@ -2,18 +2,25 @@ local M = {}
 
 M.setup_lsp = function(attach, capabilities)
   local lspconfig = require "lspconfig"
+  local lsp_signature = require("lsp_signature")
 
   -- When calling require("nvim-lsp-installer").setup {}, a hook will be registered with lspconfig.
   -- This hook will be invoked every time you set up a server.
   -- See https://github.com/williamboman/nvim-lsp-installer/discussions/636
   for _, lsp in ipairs(require("nvim-lsp-installer.servers").get_installed_server_names()) do
     local on_attach_func = function(client, bufnr)
-      attach(client, bufnr)
+      -- lsp_signature.on_attach({
+      --   bind = true, -- This is mandatory, otherwise border config won't get registered.
+      --   handler_opts = {
+      --     border = "rounded"
+      --   }
+      -- }, bufnr)
       -- change gopls server capabilities
       if lsp == "gopls" then
         client.resolved_capabilities.document_formatting = true
         client.resolved_capabilities.document_range_formatting = true
       end
+      attach(client, bufnr)
     end
 
     local settings = {}

@@ -1,8 +1,18 @@
 return {
   ["kdheepak/lazygit.nvim"] = {},
-  ["hown3d/go.nvim"] = {
+  ["ray-x/go.nvim"] = {
     config = function()
       require("go").setup()
+    end,
+  },
+  ["Pocco81/AutoSave.nvim"] = {
+    config = function()
+      require "custom.plugins.configs.autosave"
+    end
+  },
+  ["jose-elias-alvarez/null-ls.nvim"] = {
+    config = function()
+      require "custom.plugins.configs.null-ls"
     end,
   },
   ["simrat39/rust-tools.nvim"] = {},
@@ -42,12 +52,19 @@ return {
       require("navigator").setup()
     end
   },
+  -- override lazyloading
+  ["williamboman/nvim-lsp-installer"] = {},
   -- DAP Debugging
   ["hown3d/nvim-dap"] = {
     branch = "vscode-launch",
     config = function()
       require("dap.ext.vscode").load_launchjs()
     end,
+  },
+  ["ray-x/lsp_signature.nvim"] = {
+    config = function()
+      require "lsp_signature".setup()
+    end
   },
   ["leoluz/nvim-dap-go"] = {
     config = function()

@@ -15,14 +15,14 @@ M.mappings = require "custom.mappings"
 local telescope = require "custom.plugins.configs.telescope"
 local nvterm = require "custom.plugins.configs.nvterm"
 local nvimtree = require "custom.plugins.configs.nvimtree"
+local cmp = require "custom.plugins.configs.cmp"
 
 M.plugins = {
   override = {
-    ["nvim-telescope/telescope.nvim"]   = telescope,
-    ["NvChad/nvterm"]                   = nvterm,
-    ["kyazdani42/nvim-tree.lua"]        = nvimtree,
-    -- remove lazy loading
-    ["williamboman/nvim-lsp-installer"] = {},
+    ["nvim-telescope/telescope.nvim"] = telescope,
+    ["NvChad/nvterm"]                 = nvterm,
+    ["kyazdani42/nvim-tree.lua"]      = nvimtree,
+    ["hrsh7th/nvim-cmp"]              = cmp,
   },
   user = require "custom.plugins",
   options = {
