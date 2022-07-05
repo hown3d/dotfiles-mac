@@ -48,7 +48,9 @@ return {
   -- },
   ["ray-x/lsp_signature.nvim"] = {
     config = function()
-      require "lsp_signature".setup()
+      require "lsp_signature".setup({
+        floating_window_above_cur_line = false,
+      })
     end
   },
   -- override lazyloading
@@ -73,6 +75,15 @@ return {
   },
 
   -- ui improvments
+  ["kevinhwang91/nvim-bqf"] = {
+    -- ft = "qf",
+    config = function()
+      require("bqf").setup({
+        auto_enable = true,
+        auto_resize_height = true, -- highly recommended enable
+      })
+    end
+  },
   ["stevearc/dressing.nvim"] = {
     config = function()
       require("dressing").setup {}
