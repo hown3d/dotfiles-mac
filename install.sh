@@ -39,15 +39,15 @@ casks=(
 
 function brew_func {
   echo "Fetching binaries"
-  for binary in "${binaries[@]}"; do
-    echo "fetching $binary"
-    brew fetch $binary &
+  for hello in "${binaries[@]}"; do
+    echo "fetching $hello"
+    brew fetch $hello &
   done
 
   echo "Fetching head binaries"
-  for binary in "${head_binaries[@]}"; do
-    echo "fetching $binary"
-    brew fetch $binary &
+  for hello in "${head_binaries[@]}"; do
+    echo "fetching $hello"
+    brew fetch $hello &
   done
 
 

@@ -19,10 +19,10 @@ local cmp = require "custom.plugins.configs.cmp"
 
 M.plugins = {
   override = {
-    ["nvim-telescope/telescope.nvim"] = telescope,
-    ["NvChad/nvterm"]                 = nvterm,
-    ["kyazdani42/nvim-tree.lua"]      = nvimtree,
-    ["hrsh7th/nvim-cmp"]              = cmp,
+    ["nvim-telescope/telescope.nvim"]   = telescope,
+    ["NvChad/nvterm"]                   = nvterm,
+    ["kyazdani42/nvim-tree.lua"]        = nvimtree,
+    ["hrsh7th/nvim-cmp"]                = cmp,
   },
   user = require "custom.plugins",
   options = {

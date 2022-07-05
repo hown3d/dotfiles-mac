@@ -11,7 +11,7 @@ null_ls.setup({
   sources = {
     -- Code Actions
     code_actions.gitsigns,
-    code_actions.refactoring,
+    -- code_actions.refactoring,
     code_actions.shellcheck,
     -- Diagnostics
     diagnostics.actionlint,
