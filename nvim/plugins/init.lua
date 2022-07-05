@@ -14,7 +14,7 @@ return {
   ["goolord/alpha-nvim"] = {
     disable = false,
   },
-  ["is0n/jaq-nvim"] = {
+  ["hown3d/jaq-nvim"] = {
     config = function()
       require "custom.plugins.configs.jaq"
     end,
