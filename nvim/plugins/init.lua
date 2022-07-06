@@ -4,6 +4,9 @@ return {
     config = function()
       require "custom.plugins.configs.go"
     end,
+    requires = {
+      { 'ray-x/guihua.lua', run = 'cd lua/fzy && make' },
+    }
   },
   ["Pocco81/AutoSave.nvim"] = {
     config = function()
@@ -32,20 +35,20 @@ return {
   -- },
 
   -- lsp stuff
-  ["ray-x/navigator.lua"] = {
-    config = function()
-      require("navigator").setup()
-    end,
-    requires = {
-      { 'ray-x/guihua.lua', run = 'cd lua/fzy && make' },
-      { 'neovim/nvim-lspconfig' },
-    },
-  },
-  -- ["jose-elias-alvarez/null-ls.nvim"] = {
+  -- ["ray-x/navigator.lua"] = {
   --   config = function()
-  --     require "custom.plugins.configs.null-ls"
+  --     require("navigator").setup()
   --   end,
+  --   requires = {
+  --     { 'ray-x/guihua.lua', run = 'cd lua/fzy && make' },
+  --     { 'neovim/nvim-lspconfig' },
+  --   },
   -- },
+  ["jose-elias-alvarez/null-ls.nvim"] = {
+    config = function()
+      require "custom.plugins.configs.null-ls"
+    end,
+  },
   ["ray-x/lsp_signature.nvim"] = {
     config = function()
       require "lsp_signature".setup({
@@ -53,6 +56,7 @@ return {
       })
     end
   },
+  ["folke/lua-dev.nvim"] = {},
   -- override lazyloading
   ["williamboman/nvim-lsp-installer"] = {},
 

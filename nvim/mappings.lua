@@ -10,15 +10,15 @@ M.lazygit = {
 
 M.coderun = {
   n = {
-    ["<leader>rc"] = { 
-      function() 
-        require "custom.coderunner".run_code()
-      end, "Run Code" 
+    ["<leader>rc"] = {
+      function()
+        runners.run_code()
+      end, "Run Code"
     },
-    ["<leader>rt"] = { 
-      function() 
-        require "custom.coderunner".test_code()
-      end, "Test Code" 
+    ["<leader>rt"] = {
+      function()
+        runners.test_code()
+      end, "Test Code"
     },
   }
 }
