@@ -3,7 +3,7 @@ local runners = require("custom.coderunner")
 
 M.lazygit = {
   n = {
-    ["<leader>gg"] = { "<cmd>LazyGit<CR>", "Open Lazygit" },
+    ["<leader>gg"] = { "<cmd>LazyGit<CR>", " Lazygit" },
   },
 }
 
@@ -20,6 +20,11 @@ M.coderun = {
         runners.test_code()
       end, "Test Code"
     },
+    ["<leader>rs"] = {
+      function ()
+        require("neotest").summary.open()
+      end, "Open Test Summary"
+    }
   }
 }
 
@@ -38,6 +43,14 @@ M.lsp = {
       end,
       "   lsp code_lens_run",
     },
+    ["<leader>rn"] = {
+      function()
+        vim.lsp.buf.rename()
+      end,
+      "   lsp rename",
+    },
+    ["<leader>qd"] = { "<cmd>Trouble document_diagnostics<CR>", "   lsp document_diagnostics" },
+    ["<leader>qw"] = { "<cmd>Trouble workspace_diagnostics<CR>", "   lsp workspace_diagnostics" },
   },
   v = {
     ["<leader>ca"] = {
@@ -55,69 +68,36 @@ M.trouble = {
     ["<leader>fT"] = { "<cmd>TodoTrouble<CR>", "Find Todos with Trouble" }
   }
 }
---
--- M.toggleterm = {
---   t = {
---     -- toggle in terminal mode
---     ["<A-i>"] = {
---       "<cmd>ToggleTerm direction=float<CR>",
---       "   toggle floating term",
---     },
---
---     ["<A-h>"] = {
---       "<cmd>ToggleTerm direction=horizontal<CR>",
---       "   toggle horizontal term",
---     },
---
---     ["<A-v>"] = {
---       "<cmd>ToggleTerm direction=horizontal<CR>",
---       "   toggle vertical term",
---     },
---   },
---
---   n = {
---     -- toggle in normal mode
---     ["<A-i>"] = {
---       "<cmd>ToggleTerm direction=float<CR>",
---       "   toggle floating term",
---     },
---
---     ["<A-h>"] = {
---       "<cmd>ToggleTerm direction=horizontal<CR>",
---       "   toggle horizontal term",
---     },
---
---     ["<A-v>"] = {
---       "<cmd>ToggleTerm direction=horizontal<CR>",
---       "   toggle vertical term",
---     },
---
---     -- new
---     ["<leader>h"] = {},
---     ["<leader>v"] = {},
---
---     ["<leader>Th"] = {
---       "<cmd>ToggleTerm direction=horizontal<CR>",
---       "   new horizontal term",
---     },
---
---
---     ["<leader>Tf"] = {
---       "<cmd>ToggleTerm direction=float<CR>",
---       "   new float term",
---     },
---
---     ["<leader>Tt"] = {
---       "<cmd>ToggleTerm direction=tab<CR>",
---       "   new tab term",
---     },
---
---     ["<leader>Tv"] = {
---       "<cmd>ToggleTerm direction=vertical<CR>",
---       "   new vertical term",
---     },
---   },
--- }
+
+M.telescope = {
+  n = {
+    ["<leader>fs"] = { "<cmd>Telescope aerial<CR>", "Open symbols outline" }
+  }
+}
+
+M.gitsigns = {
+  n = {
+    ["<leader>gn"] = {
+      function ()
+        require("gitsigns.actions").next_hunk()
+      end,
+      " git next hunk"
+    },
+    ["<leader>gp"] = {
+      function ()
+        require("gitsigns.actions").prev_hunk()
+      end,
+      " git previous hunk"
+    },
+
+    ["<leader>gb"] = {
+      function ()
+        require("gitsigns.actions").toggle_current_line_blame()
+      end,
+      " git blame"
+    }
+  }
+}
 
 M.dap = {
   n = {

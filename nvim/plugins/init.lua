@@ -27,6 +27,30 @@ return {
       vim.fn['fzf#install']()
     end
   },
+  ["stevearc/aerial.nvim"] = {
+    config = function ()
+      require('aerial').setup({})
+    end
+  },
+  ["nvim-neotest/neotest"] = {
+    requires = {
+     "nvim-lua/plenary.nvim",
+     "nvim-treesitter/nvim-treesitter",
+     "antoinemadec/FixCursorHold.nvim",
+     "nvim-neotest/neotest-go",
+    },
+    config = function ()
+     require("neotest").setup({
+       adapters = {
+         require('neotest-go')({
+          -- experimental = {
+          --   test_table = true,
+          -- }
+         }),
+       }
+     })
+    end
+  },
   -- ["akinsho/toggleterm.nvim"] = {
   --   tag = 'v1.*',
   --   config = function()
@@ -95,13 +119,19 @@ return {
   },
   ["folke/todo-comments.nvim"] = {
     config = function()
-      require("todo-comments").setup {}
+      require("todo-comments").setup {
+        search = {
+          -- matches TODO(blabla) aswell
+          pattern = [[\b(TODO)[(a-z0-9)]*:]], -- ripgrep regex
+        }
+      }
     end
   },
   ["folke/trouble.nvim"] = {
     config = function()
       require "custom.plugins.configs.trouble"
-    end
+    end,
+    requires = "nvim-lua/plenary.nvim",
   },
   ["booperlv/nvim-gomove"] = {
     config = function()

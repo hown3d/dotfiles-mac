@@ -13,6 +13,7 @@ M.setup_lsp = function(attach, capabilities)
         client.resolved_capabilities.document_formatting = true
         client.resolved_capabilities.document_range_formatting = true
       end
+      require("aerial").on_attach(client, bufnr)
       attach(client, bufnr)
     end
 

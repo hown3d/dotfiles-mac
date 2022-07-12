@@ -14,13 +14,6 @@ local function get_filetype()
   return ft
 end
 
--- test_runners is a table which holds test runners based on filetype
-local test_runners = {
-  ["go"] = function()
-    require("go.gotest").test("-n")
-  end,
-}
-
 
 -- code_runners is a table which holds code runners based on filetype
 local code_runners = {
@@ -43,13 +36,31 @@ local code_runners = {
 
 
 function M.test_code()
-  local ft = get_filetype()
-  local test_func = test_runners[ft]
-  if (test_func) then
-    test_func()
-  else
-    print("no test tool registered for filetype ", ft)
-  end
+  local file, func, package, everything = "file", "func", "package", "everything"
+  local neotest = require("neotest")
+  vui.select({file, func, package, everything}, {
+    prompt = "Select which type of test to run"
+  },function (choice)
+    if not choice then
+      return
+    end
+    local neotest_arg
+    if choice == file then
+      neotest_arg = vim.fn.expand("%")
+    elseif choice == everything then
+      neotest_arg = vim.fn.getcwd()
+    elseif choice == func then
+      neotest_arg = nil
+    elseif choice == package then
+      -- directory
+      neotest_arg = vim.fn.expand("%:h")
+    end
+    neotest.run.run(neotest_arg)
+    -- only open summary if more then the current func is executed
+    if neotest_arg ~= nil then
+      neotest.summary.open()
+    end
+  end)
 end
 
 function M.run_code()
