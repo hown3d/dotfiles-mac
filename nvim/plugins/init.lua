@@ -17,7 +17,7 @@ return {
   ["goolord/alpha-nvim"] = {
     disable = false,
   },
-  ["hown3d/jaq-nvim"] = {
+  ["is0n/jaq-nvim"] = {
     config = function()
       require "custom.plugins.configs.jaq"
     end,
@@ -28,27 +28,27 @@ return {
     end
   },
   ["stevearc/aerial.nvim"] = {
-    config = function ()
+    config = function()
       require('aerial').setup({})
     end
   },
   ["nvim-neotest/neotest"] = {
     requires = {
-     "nvim-lua/plenary.nvim",
-     "nvim-treesitter/nvim-treesitter",
-     "antoinemadec/FixCursorHold.nvim",
-     "nvim-neotest/neotest-go",
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      "antoinemadec/FixCursorHold.nvim",
+      "nvim-neotest/neotest-go",
     },
-    config = function ()
-     require("neotest").setup({
-       adapters = {
-         require('neotest-go')({
-          -- experimental = {
-          --   test_table = true,
-          -- }
-         }),
-       }
-     })
+    config = function()
+      require("neotest").setup({
+        adapters = {
+          require('neotest-go')({
+            -- experimental = {
+            --   test_table = true,
+            -- }
+          }),
+        }
+      })
     end
   },
   -- ["akinsho/toggleterm.nvim"] = {
@@ -68,6 +68,11 @@ return {
   --     { 'neovim/nvim-lspconfig' },
   --   },
   -- },
+  ["lukas-reineke/lsp-format.nvim"] = {
+    config = function()
+      require("lsp-format").setup {}
+    end
+  },
   ["jose-elias-alvarez/null-ls.nvim"] = {
     config = function()
       require "custom.plugins.configs.null-ls"
@@ -81,12 +86,9 @@ return {
     end
   },
   ["folke/lua-dev.nvim"] = {},
-  -- override lazyloading
-  ["williamboman/nvim-lsp-installer"] = {},
 
   -- DAP Debugging
-  ["hown3d/nvim-dap"] = {
-    branch = "vscode-launch",
+  ["mfussenegger/nvim-dap"] = {
     config = function()
       require("dap.ext.vscode").load_launchjs()
     end,
@@ -109,9 +111,14 @@ return {
       require("bqf").setup({
         auto_enable = true,
         auto_resize_height = true, -- highly recommended enable
+        preview = {
+          win_height = 999, -- like fullscreen
+          wrap = true,
+        }
       })
     end
   },
+  ["bluz71/vim-moonfly-colors"] = {},
   ["stevearc/dressing.nvim"] = {
     config = function()
       require("dressing").setup {}
@@ -138,5 +145,6 @@ return {
       require("gomove").setup()
     end
   },
+  ["andymass/vim-matchup"] = {},
   ["mg979/vim-visual-multi"] = {},
 }

@@ -1,5 +1,22 @@
 local M = {}
 
+function LineDiagnosticsHover(bufnr)
+  vim.api.nvim_create_autocmd("CursorHold", {
+    buffer = bufnr,
+    callback = function()
+      local opts = {
+        focusable = false,
+        close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+        border = 'rounded',
+        source = 'always',
+        prefix = ' ',
+        scope = 'cursor',
+      }
+      vim.diagnostic.open_float(nil, opts)
+    end
+  })
+end
+
 M.setup_lsp = function(attach, capabilities)
   local lspconfig = require "lspconfig"
 
@@ -8,11 +25,8 @@ M.setup_lsp = function(attach, capabilities)
   -- See https://github.com/williamboman/nvim-lsp-installer/discussions/636
   for _, lsp in ipairs(require("nvim-lsp-installer.servers").get_installed_server_names()) do
     local on_attach_func = function(client, bufnr)
-      -- change gopls server capabilities
-      if lsp == "gopls" then
-        client.resolved_capabilities.document_formatting = true
-        client.resolved_capabilities.document_range_formatting = true
-      end
+      LineDiagnosticsHover(bufnr)
+      require("lsp-format").on_attach(client)
       require("aerial").on_attach(client, bufnr)
       attach(client, bufnr)
     end
@@ -38,9 +52,19 @@ M.setup_lsp = function(attach, capabilities)
       goto skip
     end
 
+    local settings = {}
+    if lsp == "gopls" then
+      settings = {
+        gopls = {
+          semanticTokens = true
+        }
+      }
+    end
+
     lspconfig[lsp].setup({
       on_attach = on_attach_func,
-      capabilities = capabilities
+      capabilities = capabilities,
+      settings = settings,
     })
 
     if lsp == "rust_analyzer" then
