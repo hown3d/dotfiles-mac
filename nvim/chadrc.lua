@@ -11,9 +11,6 @@ M.ui = {
 
 M.mappings = require "custom.mappings"
 
-require("custom.autocmds")
-
-
 local telescope = require "custom.plugins.configs.telescope"
 local nvterm = require "custom.plugins.configs.nvterm"
 local nvimtree = require "custom.plugins.configs.nvimtree"

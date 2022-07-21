@@ -15,23 +15,6 @@ require('jaq-nvim').setup {
       cpp = "clang % -o $fileBase && ./$fileBase",
       c = "clang % -o $fileBase && ./$fileBase",
       go = "go run %",
-      dockerfile = function()
-        local cmd
-        local callback = function(tag)
-          if not tag then
-            return
-          end
-          cmd = "docker build -f %"
-          if not tag == "" then
-            cmd = cmd .. string.format(" -t %s", tag)
-          end
-        end
-        vui.input({
-          prompt = "Please set a tag for the docker image, leave empty to use no tag",
-          default = "",
-          completion = "",
-        }, callback)
-      end,
       sh = "sh %"
     },
 
