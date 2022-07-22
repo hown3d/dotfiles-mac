@@ -47,7 +47,6 @@ M.setup_lsp = function(attach, capabilities)
           },
         },
       })
-      -- print(vim.inspect(luadev))
       lspconfig[lsp].setup(luadev)
       goto skip
     end

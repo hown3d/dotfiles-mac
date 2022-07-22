@@ -20,12 +20,12 @@ local autopairs = require "custom.plugins.configs.autopairs"
 
 M.plugins = {
   override = {
-    ["nvim-telescope/telescope.nvim"] = telescope,
-    ["NvChad/nvterm"]                 = nvterm,
-    ["kyazdani42/nvim-tree.lua"]      = nvimtree,
-    ["hrsh7th/nvim-cmp"]              = cmp,
+    ["nvim-telescope/telescope.nvim"]   = telescope,
+    ["NvChad/nvterm"]                   = nvterm,
+    ["kyazdani42/nvim-tree.lua"]        = nvimtree,
+    ["hrsh7th/nvim-cmp"]                = cmp,
     ["nvim-treesitter/nvim-treesitter"] = treesitter,
-    ["windwp/nvim-autopairs"] = autopairs,
+    ["windwp/nvim-autopairs"]           = autopairs,
   },
   user = require "custom.plugins",
   options = {

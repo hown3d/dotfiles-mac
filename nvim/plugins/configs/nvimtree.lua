@@ -1,4 +1,5 @@
 return {
+  ignore_buffer_on_setup = true,
   sync_root_with_cwd = true,
   git = {
     enable = true,

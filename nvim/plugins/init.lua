@@ -86,7 +86,6 @@ return {
     end
   },
   ["folke/lua-dev.nvim"] = {},
-
   -- DAP Debugging
   ["mfussenegger/nvim-dap"] = {
     config = function()
